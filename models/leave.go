@@ -1,6 +1,6 @@
 package models
 
 type Leave struct {
-	Model,
+	Model
 	reason string
 }

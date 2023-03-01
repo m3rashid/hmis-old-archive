@@ -9,9 +9,11 @@ import (
 	"time"
 
 	"github.com/judwhite/go-svc"
+	"github.com/m3rashid/hms/args"
+	"github.com/m3rashid/hms/db"
 	"github.com/m3rashid/hms/models"
+	"github.com/m3rashid/hms/redis"
 	"github.com/m3rashid/hms/routers"
-	"github.com/m3rashid/hms/utils"
 )
 
 type program struct {
@@ -20,7 +22,7 @@ type program struct {
 }
 
 func (p *program) Init(env svc.Environment) error {
-	utils.ConnectRedis()
+	redis.ConnectRedis()
 	// influx.ConnectInflux()
 	return nil
 }
@@ -30,29 +32,31 @@ func (p *program) Start() error {
 	switch args.Cmd.DB {
 	case "create":
 		fmt.Println("creating database")
-		utils.Create()
+		db.Create()
 		syscall.Kill(syscall.Getpid(), syscall.SIGINT)
 	case "migrate":
 		fmt.Println("migrating tables")
-		utils.Migrate(args.Cmd.GIN_ENV, &models.User{})
+		db.Migrate(args.Cmd.GIN_ENV, &models.User{})
 		syscall.Kill(syscall.Getpid(), syscall.SIGINT)
 	case "seed":
 	case "drop":
 		fmt.Println("droping database")
 		if args.Cmd.TABLE != "" {
-			utils.Open("")
-			utils.DB.Migrator().DropTable(args.Cmd.TABLE)
+			db.Open("")
+			db.DB.Migrator().DropTable(args.Cmd.TABLE)
 		} else {
-			utils.Drop()
+			db.Drop()
 		}
 		syscall.Kill(syscall.Getpid(), syscall.SIGINT)
 	case "createInflux":
 		// influx.Init()
 	default:
 		fmt.Println("server starting...")
-		utils.Open("")
+		db.Open("")
 		routers.InitRouter(os.Interrupt)
 	}
+
+	fmt.Println("Server Started 🏄")
 	return nil
 }
 

@@ -40,16 +40,16 @@ const (
 )
 
 type ProfileCommons struct {
-	User,
-	Address,
-	Contact string
+	User
+	Address
+	Contact       string
 	Sex           sexType       `gorm:"type:sex"`
 	Role          role          `gorm:"type:role"`
 	MaritalStatus maritalStatus `gorm:"type:maritalStatus"`
 }
 
 type Profile struct {
-	ProfileCommons,
+	ProfileCommons
 	Designation string
 }
 

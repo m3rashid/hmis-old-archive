@@ -9,6 +9,8 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/m3rashid/hms/config"
+	"github.com/m3rashid/hms/controller"
+	"github.com/m3rashid/hms/middleware"
 )
 
 func InitRouter(sig ...os.Signal) {
@@ -35,27 +37,24 @@ func SetupRouter() *gin.Engine {
 	config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Authorization"}
 	router.Use(cors.New(config))
 
-	router.GET("/ping", service.PingHandler)
-	router.POST("/sms", service.SMSHandler)
-	router.POST("/users", service.CreateUsersHandler)
-	router.POST("/alipay", service.AliPayHandler)
-	router.POST("/alipay_notify", service.AliPayNotifyHandler)
-	router.POST("/cities", service.CityListHandler)
-	router.POST("/influx_save", service.SaveInfluxDBHandler)
-	router.POST("/influx_show", service.ShowInfuxDBHandler)
+	router.GET("/ping", controller.PingHandler)
+	router.POST("/influx-save", controller.SaveInfluxDBHandler)
+	router.POST("/influx-show", controller.ShowInfuxDBHandler)
+
 	authorized := router.Group("/")
-	authorized.Use(middleware.Auth("user"))
+	authorized.Use(middleware.Auth())
 	{
-		authorized.GET("/auth_ping", service.AuthPingHandler)
+		authorized.GET("/auth/ping", controller.AuthPingHandler)
 	}
+
 	users := router.Group("/users")
 	{
-		users.POST("/sign_up", service.SignUpHandler)
-		users.POST("/sign_in", service.SignInHandler)
+		users.POST("/register", controller.SignUpHandler)
+		users.POST("/login", controller.SignInHandler)
 	}
-	users.Use(middleware.Auth("user"))
+	users.Use(middleware.Auth())
 	{
-		users.POST("/change_password", service.ChangePasswordHandler)
+		users.POST("/change-password", controller.ChangePasswordHandler)
 	}
 	return router
 }

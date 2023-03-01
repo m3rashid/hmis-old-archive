@@ -1,7 +1,7 @@
 package models
 
 type NonConsumables struct {
-	Model,
-	name string
+	Model
+	name     string
 	quantity int
 }

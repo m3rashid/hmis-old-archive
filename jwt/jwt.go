@@ -9,6 +9,7 @@ import (
 
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/m3rashid/hms/config"
+	"github.com/m3rashid/hms/models"
 	"github.com/m3rashid/hms/redis"
 
 	"github.com/google/uuid"
@@ -26,9 +27,14 @@ type Payload struct {
 	jwt.StandardClaims
 }
 
-func GenPayload(data PayloadSub) (Payload, error) {
+func GenPayload(user models.User) (Payload, error) {
 	now := time.Now()
-	payload, err := json.Marshal(data)
+	payload, err := json.Marshal(PayloadSub{
+		UserId:      user.ID,
+		Name:        user.Name,
+		Email:       user.Email,
+		Permissions: user.Permissions,
+	})
 	if err != nil {
 		return Payload{}, err
 	}

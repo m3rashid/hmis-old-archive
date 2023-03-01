@@ -71,6 +71,11 @@ BEGIN
 END; 
 $$ LANGUAGE plpgsql;`)
 	}
+
+	for _, mig := range InitialMigrations {
+		DB.Exec(mig)
+	}
+
 	DB.AutoMigrate(models...)
 }
 

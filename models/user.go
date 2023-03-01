@@ -9,8 +9,8 @@ import (
 )
 
 type User struct {
-	Model,
-	Name string
+	Model
+	Name        string
 	Email       string `gorm:"index:idx_email,unique"`
 	Password    string
 	Permissions []string
