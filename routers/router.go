@@ -47,7 +47,7 @@ func SetupRouter() *gin.Engine {
 		authorized.GET("/auth/ping", controller.AuthPingHandler)
 	}
 
-	users := router.Group("/users")
+	users := router.Group("/user")
 	{
 		users.POST("/register", controller.SignUpHandler)
 		users.POST("/login", controller.SignInHandler)

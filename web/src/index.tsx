@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import 'antd/dist/reset.css';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+import 'index.css';
+import App from 'app';
+import { HotkeysProvider } from 'react-hotkeys-hook';
+import { RecoilRoot } from 'recoil';
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+	<React.StrictMode>
+		<HotkeysProvider>
+			<RecoilRoot>
+				<App />
+			</RecoilRoot>
+		</HotkeysProvider>
+	</React.StrictMode>
 );

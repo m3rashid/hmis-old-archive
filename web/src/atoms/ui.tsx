@@ -1,6 +1,8 @@
 import { atom } from 'recoil';
 
-const uiAtom = atom({
+export interface IUi {}
+
+const uiAtom = atom<IUi>({
 	key: 'ui',
 	default: {},
 });

@@ -46,22 +46,13 @@ func SignInHandler(c *gin.Context) {
 		return
 	}
 
-	password := params["password"]
-	loginType := params["login_type"]
-
-	var user *models.User
-	var notFound bool
-	switch loginType {
-	case "email":
-		user, notFound = models.FindUserByColum("email", params["email"])
-	default:
-		notFound = true
-	}
-	if notFound {
+	user, found := models.FindUserByColum("email", params["email"])
+	if !found {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "account not found"})
 		return
 	}
-	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
+
+	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(params["password"]))
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"status": "accout or password error"})
 		return
