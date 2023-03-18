@@ -1,19 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import 'antd/dist/reset.css';
+/* @refresh reload */
+import { render } from 'solid-js/web';
 
-import 'index.css';
-import App from 'app';
-import { HotkeysProvider } from 'react-hotkeys-hook';
-import { RecoilRoot } from 'recoil';
+import './index.css';
+import App from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-root.render(
-	<React.StrictMode>
-		<HotkeysProvider>
-			<RecoilRoot>
-				<App />
-			</RecoilRoot>
-		</HotkeysProvider>
-	</React.StrictMode>
-);
+const root = document.getElementById('root');
+
+if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
+  throw new Error(
+    'Root element not found. Did you forget to add it to your index.html? Or maybe the id attribute got mispelled?',
+  );
+}
+
+render(() => <App />, root!);
