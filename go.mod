@@ -3,12 +3,10 @@ module github.com/m3rashid/hms
 go 1.18
 
 require (
-	github.com/cbrake/influxdbhelper/v2 v2.1.4
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.9.0
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/google/uuid v1.3.0
-	github.com/influxdata/influxdb1-client v0.0.0-20220302092344-a9ab5670611c
 	github.com/judwhite/go-svc v1.2.1
 	github.com/redis/go-redis/v9 v9.0.2
 	github.com/spf13/viper v1.15.0

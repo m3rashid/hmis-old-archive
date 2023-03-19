@@ -4,7 +4,3 @@ BASE_DATABASE_URL: postgres://genos:m3rashid@localhost:5432
 DATABASE_URL: postgres://genos:m3rashid@localhost:5432/hms?sslmode=disable
 DATABASE_TESTURL: postgres://genos:m3rashid@localhost:5432/hms_test?sslmode=disable
 REDIS_URL: redis://localhost:6379/7
-WORKERS: CollectIpWorker,QcloudSmsWorker
-INFLUXDB_DB: hms
-INFLUXDB_HOST: localhost
-INFLUXDB_PORT: '8086'

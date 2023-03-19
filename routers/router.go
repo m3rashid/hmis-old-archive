@@ -38,8 +38,6 @@ func SetupRouter() *gin.Engine {
 	router.Use(cors.New(config))
 
 	router.GET("/ping", controller.PingHandler)
-	router.POST("/influx-save", controller.SaveInfluxDBHandler)
-	router.POST("/influx-show", controller.ShowInfuxDBHandler)
 
 	authorized := router.Group("/")
 	authorized.Use(middleware.Auth())

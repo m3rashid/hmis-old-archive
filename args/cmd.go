@@ -39,7 +39,6 @@ func Params(c *gin.Context) map[string]string {
 	return sec
 }
 
-//json绑定所需结构体
 type SignUp struct {
 	Email           string `form:"email" json:"email" xml:"email" binding:"required"`
 	Password        string `form:"password" json:"password" xml:"password" binding:"required"`

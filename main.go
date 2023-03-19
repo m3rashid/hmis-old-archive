@@ -23,7 +23,6 @@ type program struct {
 
 func (p *program) Init(env svc.Environment) error {
 	redis.ConnectRedis()
-	// influx.ConnectInflux()
 	return nil
 }
 
@@ -48,8 +47,6 @@ func (p *program) Start() error {
 			db.Drop()
 		}
 		syscall.Kill(syscall.Getpid(), syscall.SIGINT)
-	case "createInflux":
-		// influx.Init()
 	default:
 		fmt.Println("server starting...")
 		db.Open("")
