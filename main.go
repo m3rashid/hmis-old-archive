@@ -6,11 +6,11 @@ import (
 	"os"
 	"syscall"
 
-	"github.com/m3rashid/hms/args"
-	"github.com/m3rashid/hms/config"
-	"github.com/m3rashid/hms/db"
-	"github.com/m3rashid/hms/models"
-	"github.com/m3rashid/hms/routers"
+	"github.com/m3rashid/hmis/args"
+	"github.com/m3rashid/hmis/config"
+	"github.com/m3rashid/hmis/db"
+	"github.com/m3rashid/hmis/models"
+	"github.com/m3rashid/hmis/routers"
 )
 
 func Start() error {

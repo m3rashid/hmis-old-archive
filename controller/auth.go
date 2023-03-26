@@ -5,10 +5,10 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/m3rashid/hms/db"
-	"github.com/m3rashid/hms/jwt"
-	"github.com/m3rashid/hms/models"
-	"github.com/m3rashid/hms/params"
+	"github.com/m3rashid/hmis/db"
+	"github.com/m3rashid/hmis/jwt"
+	"github.com/m3rashid/hmis/models"
+	"github.com/m3rashid/hmis/params"
 	"golang.org/x/crypto/bcrypt"
 )
 

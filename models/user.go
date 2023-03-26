@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/m3rashid/hms/db"
+	"github.com/m3rashid/hmis/db"
 	"gorm.io/gorm"
 )
 

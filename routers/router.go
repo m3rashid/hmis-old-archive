@@ -8,9 +8,9 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/m3rashid/hms/config"
-	"github.com/m3rashid/hms/controller"
-	"github.com/m3rashid/hms/middleware"
+	"github.com/m3rashid/hmis/config"
+	"github.com/m3rashid/hmis/controller"
+	"github.com/m3rashid/hmis/middleware"
 )
 
 func InitRouter(sig ...os.Signal) {

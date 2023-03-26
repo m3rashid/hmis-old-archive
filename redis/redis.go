@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/m3rashid/hms/config"
+	"github.com/m3rashid/hmis/config"
 	"github.com/redis/go-redis/v9"
 )
 

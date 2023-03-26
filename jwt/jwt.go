@@ -8,9 +8,9 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/m3rashid/hms/config"
-	"github.com/m3rashid/hms/models"
-	"github.com/m3rashid/hms/redis"
+	"github.com/m3rashid/hmis/config"
+	"github.com/m3rashid/hmis/models"
+	"github.com/m3rashid/hmis/redis"
 
 	"github.com/google/uuid"
 	"github.com/spf13/viper"

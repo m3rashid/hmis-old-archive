@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/m3rashid/hms/config"
+	"github.com/m3rashid/hmis/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

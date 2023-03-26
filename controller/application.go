@@ -7,5 +7,5 @@ import (
 )
 
 func PingHandler(c *gin.Context) {
-	c.String(http.StatusOK, "HMS says pong")
+	c.String(http.StatusOK, "hmis says pong")
 }

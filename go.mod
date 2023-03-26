@@ -1,4 +1,4 @@
-module github.com/m3rashid/hms
+module github.com/m3rashid/hmis
 
 go 1.18
 
