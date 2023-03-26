@@ -1,0 +1,8 @@
+{
+	"name": "hms-tsconfig",
+	"version": "0.0.0",
+	"files": [
+		"base.json",
+		"react-library.json"
+	]
+}
