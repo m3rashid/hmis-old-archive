@@ -1,0 +1,26 @@
+{
+	"name": "clients",
+	"version": "0.0.0",
+	"private": true,
+	"workspaces": [
+		"app",
+		"web",
+		"packages/*"
+	],
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"lint": "turbo run lint",
+		"format": "prettier --write \"**/*.{ts,tsx,md}\""
+	},
+	"devDependencies": {
+		"eslint-config-custom": "workspace:*",
+		"prettier": "latest",
+		"turbo": "latest"
+	},
+	"engines": {
+		"node": ">=16.19.1"
+	},
+	"dependencies": {},
+	"packageManager": "pnpm@7.29.3"
+}
