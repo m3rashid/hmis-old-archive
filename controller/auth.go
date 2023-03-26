@@ -2,7 +2,6 @@ package controller
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -20,7 +19,7 @@ func CurrentUser(c *gin.Context) *models.User {
 }
 
 func AuthPingHandler(c *gin.Context) {
-	c.String(http.StatusOK, fmt.Sprintf("pong"))
+	c.String(http.StatusOK, "pong")
 }
 
 func ChangePasswordHandler(c *gin.Context) {
