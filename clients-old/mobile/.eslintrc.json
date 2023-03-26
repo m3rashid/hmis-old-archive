@@ -1,7 +1,0 @@
-{
-	"extends": ["custom"],
-	"parser": "babel-eslint",
-	"parserOptions": {
-		"sourceType": "module"
-	}
-}
