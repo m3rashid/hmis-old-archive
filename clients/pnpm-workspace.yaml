@@ -1,4 +1,4 @@
 packages:
   - 'web'
-  - 'app'
+  - 'mobile'
   - 'packages/*'
