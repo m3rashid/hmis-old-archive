@@ -71,8 +71,8 @@ const LinksGroup: React.FC<IRoute> = ({
 	return (
 		<>
 			<UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
-				<Group position="apart" spacing={0}>
-					<Box sx={{ display: 'flex', alignItems: 'center' }} onClick={() => navigate(link)}>
+				<Group position="apart" spacing={0} onClick={() => !hasLinks && navigate(link)}>
+					<Box sx={{ display: 'flex', alignItems: 'center' }}>
 						<ThemeIcon variant="light" size={30}>
 							<Icon size="1.1rem" />
 						</ThemeIcon>
@@ -92,17 +92,22 @@ const LinksGroup: React.FC<IRoute> = ({
 			</UnstyledButton>
 			{hasLinks ? (
 				<Collapse in={opened}>
-					{(links || []).map((route) => (
-						<Text<'a'>
-							component="a"
-							className={classes.link}
-							href={route.link}
-							key={route.label}
-							onClick={(event) => event.preventDefault()}
-						>
-							{route.label}
-						</Text>
-					))}
+					{(links || []).map((route) => {
+						return (
+							<Text<'a'>
+								component="a"
+								className={classes.link}
+								href={`${link}${route.link}`}
+								key={route.label}
+								onClick={(e) => {
+									e.preventDefault();
+									navigate(`${link}${route.link}`);
+								}}
+							>
+								{route.label}
+							</Text>
+						);
+					})}
 				</Collapse>
 			) : null}
 		</>
