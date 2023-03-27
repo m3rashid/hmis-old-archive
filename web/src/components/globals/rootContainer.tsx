@@ -44,7 +44,7 @@ const NavbarNested: React.FC<PropsWithChildren> = ({ children }) => {
 				<Flex>
 					<Navbar
 						height={`calc(100vh - ${headerHeight})`}
-						width={{ sm: 230 }}
+						width={{ sm: 250 }}
 						p="sm"
 						className={classes.navbar}
 					>
@@ -56,9 +56,9 @@ const NavbarNested: React.FC<PropsWithChildren> = ({ children }) => {
 
 						<Navbar.Section className={classes.footer}>
 							<UserButton
-								image="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=255&q=80"
-								name="Ann Nullpointer"
-								email="anullpointasddkffjasdfkhasdfkasdhfkjer@yahoo.com"
+								image="https://m3rashid.in/images/rashid.webp"
+								name="MD Rashid Hussain"
+								email="m3rashid.hussain@gmail.com"
 							/>
 						</Navbar.Section>
 					</Navbar>

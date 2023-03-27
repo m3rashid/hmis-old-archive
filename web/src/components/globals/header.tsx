@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStyles, Header, Container, Group, rem } from '@mantine/core';
 
-export const headerHeight = rem(60);
+export const headerHeight = rem(50);
 
 const useStyles = createStyles((theme) => ({
 	inner: {
