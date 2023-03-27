@@ -1,0 +1,19 @@
+* {
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #e2e2e2;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 16px;
+	background: #00bdc1;
+}

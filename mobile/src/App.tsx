@@ -1,13 +1,12 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { PropsWithChildren } from 'react';
+import { RecoilRoot } from 'recoil';
+import { NativeBaseProvider } from 'native-base';
 
-const App = () => {
-	console.log('Hello');
-
+const App: React.FC<PropsWithChildren> = ({ children }) => {
 	return (
-		<View>
-			<Text>Hello</Text>
-		</View>
+		<RecoilRoot>
+			<NativeBaseProvider>{children}</NativeBaseProvider>
+		</RecoilRoot>
 	);
 };
 
