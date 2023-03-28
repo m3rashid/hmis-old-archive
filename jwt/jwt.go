@@ -17,10 +17,10 @@ import (
 )
 
 type PayloadSub struct {
-	UserId      uint     `json:"userId"`
-	Name        string   `json:"name"`
-	Email       string   `json:"email"`
-	Permissions []string `json:"permissions"`
+	UserId uint   `json:"userId"`
+	Name   string `json:"name"`
+	Email  string `json:"email"`
+	// Permissions []string `json:"permissions"`
 }
 
 type Payload struct {
@@ -30,10 +30,10 @@ type Payload struct {
 func GenPayload(user models.User) (Payload, error) {
 	now := time.Now()
 	payload, err := json.Marshal(PayloadSub{
-		UserId:      user.ID,
-		Name:        user.Name,
-		Email:       user.Email,
-		Permissions: user.Permissions,
+		UserId: user.ID,
+		Name:   user.Name,
+		Email:  user.Email,
+		// Permissions: user.Permissions,
 	})
 	if err != nil {
 		return Payload{}, err

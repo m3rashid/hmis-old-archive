@@ -5,15 +5,26 @@ import (
 	"log"
 	"os"
 	"syscall"
+	"time"
 
+	"github.com/judwhite/go-svc"
 	"github.com/m3rashid/hmis/args"
 	"github.com/m3rashid/hmis/config"
 	"github.com/m3rashid/hmis/db"
 	"github.com/m3rashid/hmis/models"
+	"github.com/m3rashid/hmis/redis"
 	"github.com/m3rashid/hmis/routers"
 )
 
-func Start() error {
+type program struct{}
+
+func (p *program) Init(env svc.Environment) error {
+	redis.ConnectRedis()
+	// influx.ConnectInflux()
+	return nil
+}
+
+func (p *program) Start() error {
 	args.ParseCmd()
 	switch args.Cmd.DB {
 	case "create":
@@ -39,12 +50,19 @@ func Start() error {
 		routers.InitRouter(os.Interrupt)
 	}
 
-	fmt.Println("Server Started 🏄 on PORT:", config.GetEnv("HTTP_PORT"))
+	fmt.Println("Server Started 🏄 on :", config.GetEnv("HTTP_PORT"))
+	return nil
+}
+
+func (p *program) Stop() error {
+	fmt.Println("\nserver stoping")
+	time.Sleep(time.Duration(1) * time.Second)
 	return nil
 }
 
 func main() {
-	if err := Start(); err != nil {
+	prg := &program{}
+	if err := svc.Run(prg, os.Interrupt); err != nil {
 		log.Fatal(err)
 	}
 }

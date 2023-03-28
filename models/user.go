@@ -10,10 +10,10 @@ import (
 
 type User struct {
 	Model
-	Name        string
-	Email       string `gorm:"index:idx_email,unique"`
-	Password    string
-	Permissions []string
+	Name     string
+	Email    string `gorm:"index:idx_email,unique"`
+	Password string
+	// Permissions []string
 }
 
 func FindUserByEmail(email string) (*User, SearchResult) {
