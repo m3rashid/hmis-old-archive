@@ -1,6 +1,0 @@
-DEVISE_JWT_SECRET_KEY: RANDOM_SECRET
-HTTP_PORT: 4000
-BASE_DATABASE_URL: postgres://genos:m3rashid@localhost:5432
-DATABASE_URL: postgres://genos:m3rashid@localhost:5432/hmis?sslmode=disable
-DATABASE_TESTURL: postgres://genos:m3rashid@localhost:5432/hmis_test?sslmode=disable
-REDIS_URL: redis://localhost:6379/7

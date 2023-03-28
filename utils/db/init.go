@@ -3,8 +3,8 @@ package db
 import (
 	"fmt"
 	"net/url"
+	"os"
 
-	"github.com/m3rashid/hmis/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -18,9 +18,9 @@ type PGExtension struct {
 func Open(env string) {
 	var err error
 	var url string
-	url = config.GetEnv("DATABASE_URL")
+	url = os.Getenv("DATABASE_URL")
 	if env == "test" {
-		url = config.GetEnv("DATABASE_TESTURL")
+		url = os.Getenv("DATABASE_TESTURL")
 	}
 	if DB, err = gorm.Open(postgres.Open(url), &gorm.Config{}); err != nil {
 		panic(err.Error())
@@ -28,8 +28,8 @@ func Open(env string) {
 }
 
 func Create() {
-	dbURL := config.GetEnv("DATABASE_URL")
-	dbTestURL := config.GetEnv("DATABASE_TESTURL")
+	dbURL := os.Getenv("DATABASE_URL")
+	dbTestURL := os.Getenv("DATABASE_TESTURL")
 	uri, err := url.Parse(dbURL)
 	if err != nil {
 		panic(err)
@@ -46,7 +46,7 @@ func Create() {
 		panic(err)
 	}
 	baseDb.Exec(fmt.Sprintf("CREATE DATABASE %s;", path[1:]))
-	if config.GetEnv("GIN_ENV") != "production" {
+	if os.Getenv("GIN_ENV") != "production" {
 		baseDb.Exec(fmt.Sprintf("CREATE DATABASE %s;", testPath[1:]))
 	}
 }
@@ -91,7 +91,7 @@ func DropTables(env string) {
 }
 
 func Drop() {
-	dbURL := config.GetEnv("DATABASE_URL")
+	dbURL := os.Getenv("DATABASE_URL")
 	if uri, err := url.Parse(dbURL); err != nil {
 		panic(err)
 	} else {
@@ -102,7 +102,7 @@ func Drop() {
 			panic(err)
 		}
 		baseDb.Exec(fmt.Sprintf("DROP DATABASE %s;", path[1:]))
-		if config.GetEnv("GIN_ENV") != "production" {
+		if os.Getenv("GIN_ENV") != "production" {
 			baseDb.Exec(fmt.Sprintf("DROP DATABASE %s;", "go_pangu_test"))
 		}
 	}

@@ -2,7 +2,7 @@
 
 Hospital Management and Informatics systems
 
-<details open>
+<details>
 <summary>Feature list (WIP)</summary>
 <br>
 
@@ -83,7 +83,7 @@ Other Features
 
 <br>
 
-<details open>
+<details>
 <summary>Designations</summary>
 <br>
 

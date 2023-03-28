@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 	"net/url"
+	"os"
 	"strconv"
 	"time"
 
-	"github.com/m3rashid/hmis/config"
 	"github.com/redis/go-redis/v9"
 )
 
@@ -15,7 +15,7 @@ var RDB *redis.Client
 var ctx = context.Background()
 
 func newRDB() *redis.Client {
-	u, err := url.Parse(config.GetEnv("REDIS_URL"))
+	u, err := url.Parse(os.Getenv("REDIS_URL"))
 	if err != nil {
 		panic(err.Error())
 	}

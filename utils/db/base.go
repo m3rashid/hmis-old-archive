@@ -1,4 +1,4 @@
-package models
+package db
 
 import (
 	"errors"
@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type Model struct {
+type BaseModel struct {
 	ID        uint  `gorm:"primaryKey"`
 	CreatedAt int64 `gorm:"autoCreateTime"`
 	UpdatedAt int64 `gorm:"autoUpdateTime"`

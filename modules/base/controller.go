@@ -1,4 +1,4 @@
-package controller
+package base
 
 import (
 	"net/http"
@@ -7,5 +7,7 @@ import (
 )
 
 func PingHandler(c *gin.Context) {
-	c.String(http.StatusOK, "hmis says pong")
+	c.JSON(http.StatusOK, gin.H{
+		"message": "PONG",
+	})
 }

@@ -1,19 +1,16 @@
-package jwt
+package auth
 
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/m3rashid/hmis/config"
-	"github.com/m3rashid/hmis/models"
-	"github.com/m3rashid/hmis/redis"
-
 	"github.com/google/uuid"
-	"github.com/spf13/viper"
+	"github.com/m3rashid/hmis/utils/redis"
 )
 
 type PayloadSub struct {
@@ -27,7 +24,7 @@ type Payload struct {
 	jwt.StandardClaims
 }
 
-func GenPayload(user models.User) (Payload, error) {
+func GenPayload(user User) (Payload, error) {
 	now := time.Now()
 	payload, err := json.Marshal(PayloadSub{
 		UserId: user.ID,
@@ -80,7 +77,7 @@ func OnJwtDispatch(payload Payload) {
 
 func Encoder(payload Payload) string {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, payload)
-	tokenString, err := token.SignedString([]byte(config.GetEnv("DEVISE_JWT_SECRET_KEY")))
+	tokenString, err := token.SignedString([]byte(os.Getenv("JWT_SECRET_KEY")))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -92,7 +89,7 @@ func Decoder(tokenString string) (string, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
 		}
-		return []byte(viper.Get("DEVISE_JWT_SECRET_KEY").(string)), nil
+		return []byte(os.Getenv("JWT_SECRET_KEY")), nil
 	})
 	if err != nil {
 		return "", err

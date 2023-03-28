@@ -1,4 +1,4 @@
-package params
+package auth
 
 type SignUp struct {
 	Email           string `form:"email" json:"email" xml:"email" binding:"required"`

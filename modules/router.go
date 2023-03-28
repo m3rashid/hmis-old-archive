@@ -1,4 +1,4 @@
-package routers
+package modules
 
 import (
 	"fmt"
@@ -8,22 +8,17 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/m3rashid/hmis/config"
-	"github.com/m3rashid/hmis/controller"
-	"github.com/m3rashid/hmis/middleware"
+	"github.com/m3rashid/hmis/modules/base"
 )
 
 func InitRouter(sig ...os.Signal) {
 	router := SetupRouter()
-
 	if len(sig) == 0 {
 		sig = []os.Signal{syscall.SIGINT, syscall.SIGTERM}
 	}
-
 	signalChan := make(chan os.Signal, 1)
-
 	go func() {
-		router.Run(fmt.Sprintf(":%v", config.GetEnv("HTTP_PORT")))
+		router.Run(fmt.Sprintf(":%v", os.Getenv("HTTP_PORT")))
 	}()
 	signal.Notify(signalChan, sig...)
 }
@@ -37,22 +32,7 @@ func SetupRouter() *gin.Engine {
 	config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Authorization"}
 	router.Use(cors.New(config))
 
-	router.GET("/ping", controller.PingHandler)
+	router.GET("/ping", base.PingHandler)
 
-	authorized := router.Group("/")
-	authorized.Use(middleware.Auth())
-	{
-		authorized.GET("/auth/ping", controller.AuthPingHandler)
-	}
-
-	users := router.Group("/user")
-	{
-		users.POST("/register", controller.SignUpHandler)
-		users.POST("/login", controller.SignInHandler)
-	}
-	users.Use(middleware.Auth())
-	{
-		users.POST("/change-password", controller.ChangePasswordHandler)
-	}
 	return router
 }
