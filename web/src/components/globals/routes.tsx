@@ -1,17 +1,18 @@
-import { TablerIconsProps, IconHome, IconDetails, IconSchool } from '@tabler/icons-react';
 import { IAuth } from 'atoms/auth';
 import About from 'pages/about';
+import { HomeOutlined, InfoCircleOutlined, ReadOutlined } from '@ant-design/icons';
 
 import Home from 'pages/home';
 import Learn from 'pages/learn';
 import Modules from 'pages/learn/modules';
+import ErrorPage from 'pages/404';
 
 export interface IRoute {
 	label: string;
 	link: string;
 	Component: React.FC;
 	permissions: Array<string>;
-	icon: (props: TablerIconsProps) => JSX.Element;
+	icon: React.FC;
 
 	props?: any;
 	showInNav?: boolean;
@@ -34,21 +35,29 @@ export const checkAccess = (auth: IAuth, route: IRoute) => {
 
 const routes: Array<IRoute> = [
 	{
-		icon: IconHome,
+		icon: HomeOutlined,
 		label: 'Home',
 		link: '/',
 		Component: Home,
 		permissions: [],
 	},
 	{
-		icon: IconDetails,
+		icon: InfoCircleOutlined,
 		label: 'About',
 		link: '/about',
 		Component: About,
 		permissions: [],
 	},
 	{
-		icon: IconSchool,
+		icon: InfoCircleOutlined,
+		label: '',
+		link: '*',
+		Component: ErrorPage,
+		permissions: [],
+		showInNav: false,
+	},
+	{
+		icon: ReadOutlined,
 		label: 'Learn',
 		link: '/learn',
 		Component: Learn,

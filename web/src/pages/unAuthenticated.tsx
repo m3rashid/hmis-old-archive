@@ -1,19 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const UnAuthPage = () => {
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 
 	return (
-		<div
-			style={{
-				height: '50%',
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				flexDirection: 'column',
-				gap: '20px',
-			}}
-		>
+		<div className="h-[50%] flex items-center justify-center flex-col gap-8">
 			<div>You are not authorized to view this section</div>
 		</div>
 	);

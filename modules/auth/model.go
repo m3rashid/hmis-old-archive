@@ -9,11 +9,11 @@ import (
 )
 
 type User struct {
-	db.BaseModel
-	Name     string
-	Email    string `gorm:"index:idx_email,unique"`
-	Password string
-	// Permissions []string
+	gorm.Model
+	Name        string
+	Email       string `gorm:"index:idx_email,unique"`
+	Password    string
+	Permissions []string
 }
 
 type Address struct {
