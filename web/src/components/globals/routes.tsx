@@ -25,10 +25,7 @@ export interface IRoute {
 }
 
 export const checkAccess = (auth: IAuth, route: IRoute) => {
-	if (!auth.isLoggedIn) {
-		return false;
-	}
-
+	if (!auth.isLoggedIn) return false;
 	if (!route.role || route.role.includes('*')) return true;
 	if (auth.user?.userRole === 'ADMIN') return true;
 	const contains = route.role.some((role) => auth.user?.permissions.includes(role));

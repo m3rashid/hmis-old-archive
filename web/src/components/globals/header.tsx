@@ -10,26 +10,8 @@ const useStyles = createStyles((theme) => ({
 		justifyContent: 'space-between',
 		alignItems: 'center',
 	},
-	link: {
-		display: 'block',
-		lineHeight: 1,
-		padding: `${rem(8)} ${rem(12)}`,
-		borderRadius: theme.radius.sm,
-		textDecoration: 'none',
-		color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
-		fontSize: theme.fontSizes.sm,
-		fontWeight: 500,
-		'&:hover': {
-			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-		},
-	},
-	linkLabel: {
-		marginRight: rem(5),
-	},
-	border: {
-		borderBottom: `${rem(1)} solid ${
-			theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-		}`,
+	header: {
+		backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
 	},
 }));
 
@@ -37,7 +19,7 @@ const HeaderAction = () => {
 	const { classes } = useStyles();
 
 	return (
-		<Header height={headerHeight} className={classes.border}>
+		<Header height={headerHeight} className={classes.header}>
 			<Container className={classes.inner} fluid>
 				<Group>Hello</Group>
 				<Group spacing={5} />

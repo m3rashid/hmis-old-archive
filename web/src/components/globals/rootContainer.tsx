@@ -4,7 +4,7 @@ import { Notifications } from '@mantine/notifications';
 import { NavigationProgress } from '@mantine/nprogress';
 import { PropsWithChildren } from 'react';
 import HeaderAction, { headerHeight } from './header';
-import LinksGroup, { UserButton } from './helpers';
+import LinksGroup from './helpers';
 import routes from './routes';
 
 const useStyles = createStyles((theme) => ({
@@ -21,9 +21,15 @@ const useStyles = createStyles((theme) => ({
 			theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
 		}`,
 	},
+	childrenContainer: {
+		flex: 1,
+		maxHeight: `calc(100vh - ${headerHeight})`,
+		overflow: 'auto',
+		padding: theme.spacing.md,
+	},
 }));
 
-const NavbarNested: React.FC<PropsWithChildren> = ({ children }) => {
+const RootContainer: React.FC<PropsWithChildren> = ({ children }) => {
 	const { classes } = useStyles();
 
 	return (
@@ -44,7 +50,7 @@ const NavbarNested: React.FC<PropsWithChildren> = ({ children }) => {
 				<Flex>
 					<Navbar
 						height={`calc(100vh - ${headerHeight})`}
-						width={{ sm: 250 }}
+						width={{ sm: 230 }}
 						p="sm"
 						className={classes.navbar}
 					>
@@ -53,21 +59,11 @@ const NavbarNested: React.FC<PropsWithChildren> = ({ children }) => {
 								<LinksGroup {...item} />
 							))}
 						</Navbar.Section>
-
-						<Navbar.Section className={classes.footer}>
-							<UserButton
-								image="https://m3rashid.in/images/rashid.webp"
-								name="MD Rashid Hussain"
-								email="m3rashid.hussain@gmail.com"
-							/>
-						</Navbar.Section>
 					</Navbar>
-					<div style={{ flex: 1, maxHeight: `calc(100vh - ${headerHeight})`, overflow: 'auto' }}>
-						{children}
-					</div>
+					<div className={classes.childrenContainer}>{children}</div>
 				</Flex>
 			</ModalsProvider>
 		</MantineProvider>
 	);
 };
-export default NavbarNested;
+export default RootContainer;

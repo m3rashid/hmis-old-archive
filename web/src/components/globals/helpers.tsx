@@ -8,8 +8,6 @@ import {
 	UnstyledButton,
 	createStyles,
 	rem,
-	Avatar,
-	Flex,
 } from '@mantine/core';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
 import { IRoute } from './routes';
@@ -19,12 +17,14 @@ const useStyles = createStyles((theme) => ({
 	control: {
 		fontWeight: 500,
 		display: 'block',
-		width: '100%',
-		padding: `${theme.spacing.xs} ${theme.spacing.md}`,
+		width: 'calc(100% - 20px)',
+		padding: `${theme.spacing.xs} ${theme.spacing.xs}`,
+		margin: `0 ${theme.spacing.md} 0 ${theme.spacing.xs}`,
 		color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+		borderRadius: theme.radius.md,
 		fontSize: theme.fontSizes.sm,
 		'&:hover': {
-			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[1],
+			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[2],
 			color: theme.colorScheme === 'dark' ? theme.white : theme.black,
 		},
 	},
@@ -35,23 +35,21 @@ const useStyles = createStyles((theme) => ({
 		padding: `${theme.spacing.xs} ${theme.spacing.xs}`,
 		paddingLeft: rem(30),
 		marginLeft: rem(30),
+		marginRight: rem(10),
 		fontSize: theme.fontSizes.sm,
+		borderTopRightRadius: theme.radius.md,
+		borderBottomRightRadius: theme.radius.md,
 		color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
 		borderLeft: `${rem(1)} solid ${
 			theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
 		}`,
 		'&:hover': {
-			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[1],
+			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[2],
 			color: theme.colorScheme === 'dark' ? theme.white : theme.black,
 		},
 	},
 	chevron: {
 		transition: 'transform 200ms ease',
-	},
-	buttonStyle: {
-		width: '100%',
-		overflowX: 'hidden',
-		marginTop: 15,
 	},
 }));
 
@@ -111,32 +109,6 @@ const LinksGroup: React.FC<IRoute> = ({
 				</Collapse>
 			) : null}
 		</>
-	);
-};
-
-interface IProps {
-	name: string;
-	email: string;
-	image: string;
-}
-
-export const UserButton: React.FC<IProps> = ({ email, image, name }) => {
-	const { classes } = useStyles();
-
-	return (
-		<UnstyledButton className={classes.buttonStyle}>
-			<Flex gap={10}>
-				<Avatar size={40} color="blue" src={image}>
-					{name.split(' ').map((t) => t[0])}
-				</Avatar>
-				<div>
-					<Text>{name}</Text>
-					<Text size="xs" color="dimmed">
-						{email}
-					</Text>
-				</div>
-			</Flex>
-		</UnstyledButton>
 	);
 };
 

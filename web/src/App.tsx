@@ -1,16 +1,18 @@
 import './index.css';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import authAtom from 'atoms/auth';
 import configAtom from 'atoms/config';
 import { instance } from 'api/instance';
 import Loading from 'components/globals/loading';
+import { Route, Routes } from 'react-router-dom';
+import routes from 'components/globals/routes';
 
 const App = () => {
 	const [auth, setAuth] = useRecoilState(authAtom);
 	const [config, setConfig] = useRecoilState(configAtom);
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
 
 	// set App Config
 	const getAppConfig = useCallback(async () => {
@@ -43,7 +45,26 @@ const App = () => {
 
 	if (isLoading) return <Loading />;
 
-	return <div>Hello</div>;
+	return (
+		<Routes>
+			{routes.map((route) => {
+				return (
+					<Fragment>
+						<Route path={route.link} element={<route.Component {...route.props} />} />;
+						{route.nestedLinks?.map((nestedRoute) => {
+							return (
+								<Route
+									key={nestedRoute.link}
+									path={route.link + nestedRoute.link}
+									element={<nestedRoute.Component />}
+								/>
+							);
+						})}
+					</Fragment>
+				);
+			})}
+		</Routes>
+	);
 };
 
 export default App;
