@@ -1,9 +1,10 @@
-import './index.css';
+import 'antd/dist/reset.css';
+import 'index.css';
 import React, { Fragment } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import authAtom from 'atoms/auth';
-import configAtom from 'atoms/config';
+// import configAtom from 'atoms/config';
 import { instance } from 'api/instance';
 import Loading from 'components/globals/loading';
 import { Route, Routes } from 'react-router-dom';
@@ -11,7 +12,7 @@ import routes from 'components/globals/routes';
 
 const App = () => {
 	const [auth, setAuth] = useRecoilState(authAtom);
-	const [config, setConfig] = useRecoilState(configAtom);
+	// const [config, setConfig] = useRecoilState(configAtom);
 	const [isLoading, setIsLoading] = useState(false);
 
 	// set App Config

@@ -1,18 +1,19 @@
-import { IAuth } from 'atoms/auth';
-import About from 'pages/about';
-import { HomeOutlined, InfoCircleOutlined, ReadOutlined } from '@ant-design/icons';
+import React from 'react';
+import { BookOutlined, HomeOutlined, InfoCircleOutlined, ReadOutlined } from '@ant-design/icons';
 
+import { IAuth } from 'atoms/auth';
 import Home from 'pages/home';
+import About from 'pages/about';
 import Learn from 'pages/learn';
-import Modules from 'pages/learn/modules';
 import ErrorPage from 'pages/404';
+import Modules from 'pages/learn/modules';
 
 export interface IRoute {
 	label: string;
 	link: string;
 	Component: React.FC;
 	permissions: Array<string>;
-	icon: React.FC;
+	icon: React.ReactNode;
 
 	props?: any;
 	showInNav?: boolean;
@@ -21,8 +22,10 @@ export interface IRoute {
 		label: string;
 		link: string;
 		Component: React.FC;
+		icon: React.ReactNode;
 	}>;
 	initiallyOpened?: boolean; // sidebar dropdown state
+	dividerBottom?: boolean;
 }
 
 export const checkAccess = (auth: IAuth, route: IRoute) => {
@@ -35,21 +38,22 @@ export const checkAccess = (auth: IAuth, route: IRoute) => {
 
 const routes: Array<IRoute> = [
 	{
-		icon: HomeOutlined,
-		label: 'Home',
+		icon: <HomeOutlined />,
+		label: 'home',
 		link: '/',
 		Component: Home,
 		permissions: [],
+		dividerBottom: true,
 	},
 	{
-		icon: InfoCircleOutlined,
-		label: 'About',
+		icon: <InfoCircleOutlined />,
+		label: 'about',
 		link: '/about',
 		Component: About,
 		permissions: [],
 	},
 	{
-		icon: InfoCircleOutlined,
+		icon: <InfoCircleOutlined />,
 		label: '',
 		link: '*',
 		Component: ErrorPage,
@@ -57,21 +61,23 @@ const routes: Array<IRoute> = [
 		showInNav: false,
 	},
 	{
-		icon: ReadOutlined,
-		label: 'Learn',
+		icon: <ReadOutlined />,
+		label: 'learn',
 		link: '/learn',
 		Component: Learn,
 		permissions: [],
 		nestedLinks: [
 			{
 				link: '/home',
-				label: 'Home',
+				label: 'learn-home',
 				Component: Learn,
+				icon: <ReadOutlined />,
 			},
 			{
 				link: '/modules',
-				label: 'Modules',
+				label: 'learn-modules',
 				Component: Modules,
+				icon: <BookOutlined />,
 			},
 		],
 	},

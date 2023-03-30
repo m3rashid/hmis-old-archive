@@ -13,6 +13,8 @@ export const supportedUserRoles = [
 export interface IUser {
 	id: string | number;
 	name: string;
+	email: string;
+	profile: any;
 	permissions: Array<string>;
 	userRole: typeof supportedUserRoles[number];
 }
